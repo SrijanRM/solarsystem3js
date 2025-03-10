@@ -7,12 +7,48 @@ const scene = new THREE.Scene()
 
 // add objects to the scene
 const cubeGeometry = new THREE.BoxGeometry(1, 1, 1)
-const cubeMaterial = new THREE.MeshBasicMaterial({ color: "violet" })
-const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial)
+const cubeMaterial1 = new THREE.MeshBasicMaterial({ color: "violet" })
+const cubeMaterial2 = new THREE.MeshBasicMaterial({ color: "pink" })
+const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial2)
 scene.add(cubeMesh)
+
+const cubeMesh1 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
+const cubeMesh2 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
+const cubeMesh3 = new THREE.Mesh(cubeGeometry, cubeMaterial2)
+const cubeMesh4 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
+const cubeMesh5 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
+const group = new THREE.Group();
+group.add(cubeMesh1);
+group.add(cubeMesh2);
+group.add(cubeMesh3);
+group.add(cubeMesh4);
+group.add(cubeMesh5);
+scene.add(group);
 
 cubeMesh.position.y = 1;
 cubeMesh.position.x = 1;
+cubeMesh.position.z = 1;
+
+cubeMesh1.position.y = 2;
+cubeMesh1.position.x = 2;
+cubeMesh1.position.z = 1;
+
+cubeMesh2.position.y = 2;
+cubeMesh2.position.x = 1;
+cubeMesh2.position.z = 2;
+
+cubeMesh3.position.y = 1;
+cubeMesh3.position.x = 2;
+cubeMesh3.position.z = 2;
+
+cubeMesh4.position.y = 2;
+cubeMesh4.position.x = 2;
+cubeMesh4.position.z = 2;
+
+cubeMesh5.position.y = 2;
+cubeMesh5.position.x = 1;
+cubeMesh5.position.z = 1;
+
 const axesHelper = new THREE.AxesHelper(2)
 scene.add(axesHelper);
 
@@ -33,8 +69,8 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 
 // initilize controls 
 const controls = new OrbitControls(camera, canvas);
-controls.autoRotate = true;
 controls.enableDamping = true;
+// controls.autoRotate = true;
 
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
