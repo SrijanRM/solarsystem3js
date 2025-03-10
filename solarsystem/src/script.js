@@ -7,50 +7,55 @@ const scene = new THREE.Scene()
 
 // add objects to the scene
 const cubeGeometry = new THREE.BoxGeometry(1, 1, 1)
-const cubeMaterial1 = new THREE.MeshBasicMaterial({ color: "violet" })
-const cubeMaterial2 = new THREE.MeshBasicMaterial({ color: "pink" })
+// const cubeMaterial1 = new THREE.MeshBasicMaterial({ color: "violet" })
+const cubeMaterial2 = new THREE.MeshBasicMaterial({ color: "pink", wireframe: true })
 const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial2)
 scene.add(cubeMesh)
 
-const cubeMesh1 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
-const cubeMesh2 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
-const cubeMesh3 = new THREE.Mesh(cubeGeometry, cubeMaterial2)
-const cubeMesh4 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
-const cubeMesh5 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
-const group = new THREE.Group();
-group.add(cubeMesh1);
-group.add(cubeMesh2);
-group.add(cubeMesh3);
-group.add(cubeMesh4);
-group.add(cubeMesh5);
-scene.add(group);
+cubeMesh.rotation.y=3;
 
-cubeMesh.position.y = 1;
-cubeMesh.position.x = 1;
-cubeMesh.position.z = 1;
+// const cubeMesh1 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
+// const cubeMesh2 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
+// const cubeMesh3 = new THREE.Mesh(cubeGeometry, cubeMaterial2)
+// const cubeMesh4 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
+// const cubeMesh5 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
+// const group = new THREE.Group();
+// group.add(cubeMesh1);
+// group.add(cubeMesh2);
+// group.add(cubeMesh3);
+// group.add(cubeMesh4);
+// group.add(cubeMesh5);
+// scene.add(group);
 
-cubeMesh1.position.y = 2;
-cubeMesh1.position.x = 2;
-cubeMesh1.position.z = 1;
+// cubeMesh.position.y = 1;
+// cubeMesh.position.x = 1;
+// cubeMesh.position.z = 1;
 
-cubeMesh2.position.y = 2;
-cubeMesh2.position.x = 1;
-cubeMesh2.position.z = 2;
+// cubeMesh1.position.y = 2;
+// cubeMesh1.position.x = 2;
+// cubeMesh1.position.z = 1;
 
-cubeMesh3.position.y = 1;
-cubeMesh3.position.x = 2;
-cubeMesh3.position.z = 2;
+// cubeMesh2.position.y = 2;
+// cubeMesh2.position.x = 1;
+// cubeMesh2.position.z = 2;
 
-cubeMesh4.position.y = 2;
-cubeMesh4.position.x = 2;
-cubeMesh4.position.z = 2;
+// cubeMesh3.position.y = 1;
+// cubeMesh3.position.x = 2;
+// cubeMesh3.position.z = 2;
 
-cubeMesh5.position.y = 2;
-cubeMesh5.position.x = 1;
-cubeMesh5.position.z = 1;
+// cubeMesh4.position.y = 2;
+// cubeMesh4.position.x = 2;
+// cubeMesh4.position.z = 2;
+
+// cubeMesh5.position.y = 2;
+// cubeMesh5.position.x = 1;
+// cubeMesh5.position.z = 1;
+
+// const axesHelper = new THREE.AxesHelper(2)
+// scene.add(axesHelper);
 
 const axesHelper = new THREE.AxesHelper(2)
-scene.add(axesHelper);
+cubeMesh.add(axesHelper);
 
 // initialize the camera , 2 type PerspectiveCamera and OrthographicCamera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 30);
