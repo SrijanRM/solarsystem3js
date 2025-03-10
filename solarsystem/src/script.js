@@ -11,6 +11,11 @@ const cubeMaterial = new THREE.MeshBasicMaterial({ color: "violet" })
 const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial)
 scene.add(cubeMesh)
 
+cubeMesh.position.y = 1;
+cubeMesh.position.x = 1;
+const axesHelper = new THREE.AxesHelper(2)
+scene.add(axesHelper);
+
 // initialize the camera , 2 type PerspectiveCamera and OrthographicCamera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 30);
 // const aspectRatio = window.innerWidth / window.innerHeight;
