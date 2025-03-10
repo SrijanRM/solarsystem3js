@@ -22,6 +22,10 @@ const canvas = document.querySelector('canvas.threejs')
 const renderer = new THREE.WebGLRenderer({ canvas: canvas });
 renderer.setSize(window.innerWidth, window.innerHeight)
 
+// smoothness
+const maxPilxelRatio = Math.min(window.devicePixelRatio ,2);
+renderer.setPixelRatio(maxPilxelRatio)
+
 // initilize controls 
 const controls = new OrbitControls(camera, canvas);
 controls.autoRotate = true;
