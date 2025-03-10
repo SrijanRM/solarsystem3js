@@ -34,7 +34,7 @@ window.addEventListener('resize', () => {
 })
 
 const renderLoop = () => {
-  console.log("render loop");
+  console.log("render loop here");
   controls.update();
   renderer.render(scene, camera)
   window.requestAnimationFrame(renderLoop);
