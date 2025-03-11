@@ -6,13 +6,22 @@ import { log } from 'three/tsl';
 const scene = new THREE.Scene()
 
 // add objects to the scene
-const cubeGeometry = new THREE.BoxGeometry(1, 1, 1)
+// const cubeGeometry = new THREE.BoxGeometry(1, 1, 1)
 // const cubeMaterial1 = new THREE.MeshBasicMaterial({ color: "violet" })
-const cubeMaterial2 = new THREE.MeshBasicMaterial({ color: "pink", wireframe: true })
-const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial2)
+
+// create custom geometry
+const vertices = new Float32Array([0, 0, 0, 0, 2, 0, 2, 0, 0])
+const bufferAttribute = new THREE.BufferAttribute(vertices, 3);
+const geometry = new THREE.BufferGeometry();
+geometry.setAttribute('position',bufferAttribute);
+const cubeMaterial2 = new THREE.MeshBasicMaterial({ color: "pink", wireframe: true });
+const cubeMesh = new THREE.Mesh(geometry, cubeMaterial2)
 scene.add(cubeMesh)
 
-cubeMesh.rotation.y=3;
+// const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial2)
+// scene.add(cubeMesh)
+
+cubeMesh.rotation.y = 3;
 
 // const cubeMesh1 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
 // const cubeMesh2 = new THREE.Mesh(cubeGeometry, cubeMaterial1)
@@ -54,8 +63,8 @@ cubeMesh.rotation.y=3;
 // const axesHelper = new THREE.AxesHelper(2)
 // scene.add(axesHelper);
 
-const axesHelper = new THREE.AxesHelper(2)
-cubeMesh.add(axesHelper);
+// const axesHelper = new THREE.AxesHelper(2)
+// cubeMesh.add(axesHelper);
 
 // initialize the camera , 2 type PerspectiveCamera and OrthographicCamera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 30);
@@ -83,8 +92,21 @@ window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 })
 
+// initilize clock
+const clock = new THREE.Clock();
+let previousTime = 0;
+
 const renderLoop = () => {
   console.log("render loop here");
+
+  // const currentTime = clock.getElapsedTime();
+  // const delta = currentTime - previousTime;
+  // previousTime = currentTime;
+  // cubeMesh.rotation.y += THREE.MathUtils.degToRad(1) * delta * 10;
+  // cubeMesh.position.x += delta;
+  // cubeMesh.scale.x += 1 * delta;
+  // cubeMesh.scale.x = Math.sin(currentTime) + 2;
+
   controls.update();
   renderer.render(scene, camera)
   window.requestAnimationFrame(renderLoop);
