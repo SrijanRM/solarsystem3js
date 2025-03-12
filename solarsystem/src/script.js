@@ -10,30 +10,41 @@ const scene = new THREE.Scene()
 
 // initilize geomerty
 const geometry = new THREE.BoxGeometry(1, 1, 1);
+const torusKnotGeometry = new THREE.TorusKnotGeometry(0.5, 0.15, 100, 16);
+const planeGeometry = new THREE.PlaneGeometry(1, 1);
 
 // initilize material 
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent: true, opacity: 0.5 });
+const material = new THREE.MeshLambertMaterial();
+material.side = 2;
 
-const fog = new THREE.Fog(0xffffff,1,10);
-scene.fog = fog;
-scene.background = new THREE.Color('white')
 // initialze mesh
 const mesh = new THREE.Mesh(geometry, material);
-const mesh2 = new THREE.Mesh(geometry, material);
+const mesh2 = new THREE.Mesh(torusKnotGeometry, material);
 mesh2.position.x = 1.5;
-scene.add(mesh)
-scene.add(mesh2)
+
+const plane = new THREE.Mesh(planeGeometry, material);
+plane.position.x = -1.5;
+
+scene.add(mesh, mesh2, plane)
+
+// initilize light 
+const light = new THREE.AmbientLight(0xffffff, 0.8); 
+scene.add(light)
+
+const pointLight = new THREE.PointLight(0xffffff, 1)
+pointLight.position.set(5, 5, 5)
+scene.add(pointLight)
 
 
 // initialize the camera 
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 30);
+const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 200);
 camera.position.z = 5
 
 // initialize the renderer
 const canvas = document.querySelector('canvas.threejs')
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight)
-
+renderer.setPixelRatio(window.devicePixelRatio);
 
 // initilize controls 
 const controls = new OrbitControls(camera, canvas);
