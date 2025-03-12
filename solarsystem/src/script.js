@@ -14,9 +14,10 @@ const torusKnotGeometry = new THREE.TorusKnotGeometry(0.5, 0.15, 100, 16);
 const planeGeometry = new THREE.PlaneGeometry(1, 1);
 
 // initilize material 
-const material = new THREE.MeshPhongMaterial();
-material.shininess = 90
-material.side = THREE.DoubleSide;
+const material = new THREE.MeshStandardMaterial();
+material.color = new THREE.Color("green")
+
+// pane.addInput(material ,'metalness' , {min:0,max:1,step:0.01})
 
 
 // initialze mesh
