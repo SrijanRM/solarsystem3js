@@ -1,13 +1,15 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { checker, rotate } from 'three/tsl';
 import { Pane } from "tweakpane";
 
 // initialize a pane
 const pane = new Pane();
 
 // initialize the scene
-const scene = new THREE.Scene()
+const scene = new THREE.Scene();
+
+// initilize the loader 
+const textureLoader = new THREE.TextureLoader();
 
 // initilize geomerty
 const geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -18,9 +20,13 @@ const cylinderGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 32)
 
 const group = new THREE.Group();
 
+// initilize  texture 
+const textureTest = textureLoader.load('/texture/whispy-grass-meadow-bl/wispy-grass-meadow_albedo.png')
+
 // initilize material 
 const material = new THREE.MeshStandardMaterial();
-material.color = new THREE.Color("green")
+material.map = textureTest;
+// material.color = new THREE.Color('red')
 
 // initialze mesh
 const mesh = new THREE.Mesh(geometry, material);
