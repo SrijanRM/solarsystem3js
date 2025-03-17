@@ -222,7 +222,35 @@ const planets = [
   }
 ];
 
+const createPlanet = (planet) => {
+  const planetMesh = new THREE.Mesh(sphereGeometry, planet.material)
+  planetMesh.scale.setScalar(planet.radius)
+  planetMesh.position.x = planet.distance
+  return planetMesh
+}
 
+const createMoon = (moon) => {
+  const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial)
+  moonMesh.scale.setScalar(moon.radius)
+  moonMesh.position.x = moon.distance
+  return moonMesh;
+}
+
+const planetMeshes = planets.map((planet) => {
+  const planetMesh = createPlanet(planet)
+  scene.add(planetMesh)
+  planet.moons.forEach((moon) => {
+    const moonMesh = createMoon(moon)
+    planetMesh.add(moonMesh)
+  })
+  return planetMesh
+})
+
+
+// cant see bz of stadart material 
+// add lights 
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+scene.add(ambientLight)
 
 // initialize the camera 
 
@@ -239,7 +267,7 @@ renderer.setPixelRatio(window.devicePixelRatio, 2);
 // initilize controls 
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
-controls.maxDistance = 200;
+controls.maxDistance = 300;
 controls.minDistance = 20
 
 window.addEventListener('resize', () => {
