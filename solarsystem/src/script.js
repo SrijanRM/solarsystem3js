@@ -40,6 +40,9 @@ material.metalnessMap = grassMetalic;
 
 material.normalMap = grassNormal;
 
+material.displacementMap = grassHeight;
+material.displacementScale = 0.1
+
 
 // initialze mesh
 const mesh = new THREE.Mesh(geometry, material);
