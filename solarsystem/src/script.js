@@ -21,15 +21,25 @@ const cylinderGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 32)
 const group = new THREE.Group();
 
 // initilize  texture 
-const grassTexture = textureLoader.load('/texture/uvmapping.jpg')
-grassTexture.repeat.set(10, 10)
-grassTexture.wrapS = THREE.RepeatWrapping;
-grassTexture.wrapT = THREE.RepeatWrapping;
+const grassAlbeno = textureLoader.load('/texture/whispy-grass-meadow-bl/wispy-grass-meadow_albedo.png')
+const grassAO = textureLoader.load('/texture/whispy-grass-meadow-bl/wispy-grass-meadow_ao.png')
+const grassHeight = textureLoader.load('/texture/whispy-grass-meadow-bl/wispy-grass-meadow_height.png')
+const grassMetalic = textureLoader.load('/texture/whispy-grass-meadow-bl/wispy-grass-meadow_metallic.png')
+const grassRoughness = textureLoader.load('/texture/whispy-grass-meadow-bl/wispy-grass-meadow_roughness.png')
+const grassNormal = textureLoader.load('/texture/whispy-grass-meadow-bl/wispy-grass-meadow_normal-ogl.png')
+
 
 // initilize material 
 const material = new THREE.MeshStandardMaterial();
-material.map = grassTexture;
-// material.color = new THREE.Color('red')
+material.map = grassAlbeno;
+
+material.roughnessMap = grassRoughness;
+material.roughness = 1
+
+material.metalnessMap = grassMetalic;
+
+material.normalMap = grassNormal;
+
 
 // initialze mesh
 const mesh = new THREE.Mesh(geometry, material);
@@ -86,7 +96,7 @@ window.addEventListener('resize', () => {
 const renderLoop = () => {
   group.children.forEach((child) => {
     if (child instanceof THREE.Mesh) {
-      child.rotation.y += 0.01
+      child.rotation.y += 0.001
     }
   })
   controls.update();
