@@ -16,16 +16,6 @@ const sun = new THREE.Mesh(sphereGeometry, sunMaterial)
 sun.scale.setScalar(5);
 scene.add(sun);
 
-const earthMaterial = new THREE.MeshBasicMaterial({ color: 'blue' })
-const earth = new THREE.Mesh(sphereGeometry, earthMaterial)
-earth.position.x = 10;
-scene.add(earth);
-
-const moonMaterial = new THREE.MeshBasicMaterial({ color: 'grey' })
-const moon = new THREE.Mesh(sphereGeometry, moonMaterial)
-moon.scale.setScalar(0.3);
-moon.position.x = 2;
-earth.add(moon);
 
 // initialize the camera 
 const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 400);
@@ -50,22 +40,8 @@ window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 })
 
-// initilize clocl 
-const clock = new THREE.Clock()
-
 // render loop
 const renderLoop = () => {
-  const elaspasedTime = clock.getElapsedTime();
-
-  // add animation here
-  earth.rotation.y += 0.01;
-
-  earth.position.x = Math.sin(elaspasedTime) * 10
-  earth.position.z = Math.cos(elaspasedTime) * 10
-
-  moon.position.x = Math.sin(elaspasedTime) * 2
-  moon.position.z = Math.cos(elaspasedTime) * 2
-
   controls.update();
   renderer.render(scene, camera)
   window.requestAnimationFrame(renderLoop);
