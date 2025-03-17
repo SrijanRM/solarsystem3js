@@ -50,8 +50,22 @@ window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 })
 
+// initilize clocl 
+const clock = new THREE.Clock()
 
+// render loop
 const renderLoop = () => {
+  const elaspasedTime = clock.getElapsedTime();
+
+  // add animation here
+  earth.rotation.y += 0.01;
+
+  earth.position.x = Math.sin(elaspasedTime) * 10
+  earth.position.z = Math.cos(elaspasedTime) * 10
+
+  moon.position.x = Math.sin(elaspasedTime) * 2
+  moon.position.z = Math.cos(elaspasedTime) * 2
+
   controls.update();
   renderer.render(scene, camera)
   window.requestAnimationFrame(renderLoop);
